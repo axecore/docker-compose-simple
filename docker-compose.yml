@@ -16,7 +16,7 @@ services:
     image: phpmyadmin
     restart: always
     ports:
-      - 8080:80
+      - 8080:80 #port 8080 custom to localhost
     environment:
       PMA_HOST: db
       PMA_ARBITRARY: 1
@@ -27,9 +27,9 @@ services:
 
   php74server:
     image: webdevops/php-apache:7.4-alpine #versi php https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php-apache.html
-    restart: always #port 1010 custom to local host
+    restart: always
     ports: 
-      - 81:80
+      - 81:80 #port 81 custom to localhost
     volumes: 
       - /home/aldi/docker/project/docker-php-74:/app #sesuaikan "/home/aldi/docker/project/docker-php-74" (pada dir anda)
     networks: 
