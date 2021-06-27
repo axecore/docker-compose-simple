@@ -1,0 +1,55 @@
+version: '3.1'
+
+networks: 
+  local_arch:
+
+services:
+  db:
+    image: mariadb:10.3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+    networks: 
+      - local_arch
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: db
+      PMA_ARBITRARY: 1
+    networks: 
+      - local_arch
+    depends_on:
+     - db
+
+  php74server:
+    image: webdevops/php-apache:7.4-alpine #versi php https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php-apache.html
+    restart: always #port 1010 custom to local host
+    ports: 
+      - 81:80
+    volumes: 
+      - /home/aldi/docker/project/docker-php-74:/app #sesuaikan "/home/aldi/docker/project/docker-php-74" (pada dir anda)
+    networks: 
+      - local_arch
+    depends_on:
+      - db
+      - phpmyadmin
+
+  # contoh multi php
+
+  # php80server:
+  #   image: webdevops/php-apache:8.0-alpine
+  #   restart: always
+  #   ports: 
+  #     - 82:80
+  #   volumes: 
+  #     - /home/aldi/docker/project/docker-php-80:/app
+  #   networks: 
+  #     - local_arch
+  #   depends_on:
+  #     - db
+  #     - phpmyadmin
+
