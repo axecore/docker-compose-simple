@@ -1,4 +1,4 @@
-# docker-compose environment php mariadb 
+# docker-compose multi php
 
 - docker-compose up -d
 - enter localhost:81 in browser for webserver
