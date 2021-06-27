@@ -38,7 +38,7 @@ services:
       - db
       - phpmyadmin
 
-  # contoh multi php
+  # uncomment for multi php
 
   # php80server:
   #   image: webdevops/php-apache:8.0-alpine
