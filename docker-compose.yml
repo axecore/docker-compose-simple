@@ -9,6 +9,8 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123
+    volumes:
+      - /home/aldi/docker/database/mariadb:/var/lib/mysql #sesuaikan path mount volume
     networks: 
       - local_arch
 
@@ -26,12 +28,12 @@ services:
      - db
 
   php74server:
-    image: webdevops/php-apache:7.4-alpine #versi php https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php-apache.html
+    image: webdevops/php-nginx:7.4-alpine #versi php https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php-apache.html
     restart: always
     ports: 
       - 81:80 #port 81 custom to localhost
     volumes: 
-      - /home/aldi/docker/project/docker-php-74:/app #sesuaikan "/home/aldi/docker/project/docker-php-74" (pada dir anda)
+      - /home/kominfo/docker/project/docker-php-74:/app #sesuaikan "/home/aldi/docker/project/docker-php-74" (pada dir anda)
     networks: 
       - local_arch
     depends_on:
